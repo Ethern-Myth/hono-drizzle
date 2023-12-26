@@ -1,0 +1,15 @@
+export const Car_Types = [
+	{ name: "SEDAN", slug: "sedan" },
+	{ name: "WAGON", slug: "wagon" },
+	{ name: "SUV", slug: "suv" },
+	{ name: "HATCHBACK", slug: "hatch-back" },
+	{ name: "COUPE", slug: "coupe" },
+	{ name: "SPORT", slug: "sport" },
+	{ name: "SUPERCAR", slug: "super-car" },
+	{ name: "PICKUP", slug: "pick-up" },
+	{ name: "FOURWD", slug: "four-wheel-drive" },
+	{ name: "MINITRUCK", slug: "mini-truck" },
+	{ name: "ELECTRIC", slug: "electric" },
+	{ name: "VAN", slug: "van" },
+	{ name: "CAMPERVAN", slug: "camper-van" },
+];

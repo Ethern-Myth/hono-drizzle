@@ -1,7 +1,26 @@
-import { Hono } from 'hono'
+import { Hono } from "hono";
+import { logger } from "hono/logger";
+import { routes } from "./routes";
+import { cors } from "hono/cors";
+import { prettyJSON } from "hono/pretty-json";
+import { cache } from "hono/cache";
 
-const app = new Hono()
+export type Env = {
+	DATABASE_URL: string;
+};
 
-app.get('/', (c) => c.text('Hello Hono!'))
+const app = new Hono<{ Bindings: Env }>({ strict: false }).basePath("/api");
 
-export default app
+app.get(
+	"*",
+	cache({
+		cacheName: "inventory-app",
+		cacheControl: "max-age=7200",
+	})
+);
+app.use("*", prettyJSON());
+app.use("/api/*", cors());
+app.use("*", logger());
+app.route("/", routes);
+
+export default app;

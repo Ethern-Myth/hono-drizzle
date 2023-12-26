@@ -1,16 +1,21 @@
 {
-  "scripts": {
-    "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy --minify src/index.ts"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.6.0",
-    "hono": "^3.10.1",
-    "mongoose": "^8.0.1"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230914.0",
-    "prisma": "^5.6.0",
-    "wrangler": "^3.15.0"
-  }
+	"scripts": {
+		"dev": "wrangler dev src/index.ts",
+		"deploy": "wrangler deploy --minify src/index.ts",
+		"generate": "drizzle-kit generate:pg",
+		"migrate": "tsx migrate.ts"
+	},
+	"dependencies": {
+		"@neondatabase/serverless": "^0.6.1",
+		"drizzle-orm": "^0.29.2",
+		"hono": "^3.10.1"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20230914.0",
+		"dotenv": "^16.3.1",
+		"drizzle-kit": "^0.20.8",
+		"postgres": "^3.4.3",
+		"tsx": "^4.7.0",
+		"wrangler": "^3.15.0"
+	}
 }
