@@ -2,8 +2,6 @@ import { drizzle } from "drizzle-orm/neon-serverless";
 import { Pool } from "@neondatabase/serverless";
 import { users } from "../db/schema";
 import { eq, sql } from "drizzle-orm";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 class HomeController {
 	async login(c: any) {
@@ -18,10 +16,11 @@ class HomeController {
 				.from(users)
 				.where(sql`${makeId}=makeId`);
 			if (result) {
-				if (!bcrypt.compareSync(result.password!, password)) {
+				if (result.password! === password) {
 					return { message: "Login failed" };
 				}
-				const token = jwt.sign({ result }, "my_secret_key");
+				const randomString = Math.random().toString(36).slice(-8);
+				const token = randomString;
 				return { token: token, result: result, message: "Login Success" };
 			}
 			return { message: "Login failed" };
@@ -45,7 +44,7 @@ class HomeController {
 			}
 			const data = {
 				makeId: form.id,
-				password: bcrypt.hashSync(form.password, 10),
+				password: form.password,
 			};
 			const [res] = await db.insert(users).values(data).returning();
 			return { res, message: "" };
