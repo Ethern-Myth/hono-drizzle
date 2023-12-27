@@ -5,6 +5,7 @@ import { vehicleController } from "../controllers/vehicle.controller";
 import { trimController } from "../controllers/trim.controller";
 import { modelController } from "../controllers/model.controller";
 import { makeController } from "../controllers/make.controller";
+import { homeController } from "../controllers/home.controller";
 
 export const routes = new Hono();
 
@@ -17,6 +18,28 @@ routes.get("/seed", async (c) => {
 	try {
 		const data = await seedController.seed(c);
 		return c.json(data, 200);
+	} catch (error) {
+		console.log(error);
+		return c.json(error, 400);
+	}
+});
+
+/* The code block you provided is defining routes for handling POST requests to the "/login" and
+"/register" endpoints. */
+routes.post("/login", async (c) => {
+	try {
+		const data = await homeController.login(c);
+		return c.json(data, 201);
+	} catch (error) {
+		console.log(error);
+		return c.json(error, 400);
+	}
+});
+
+routes.post("/register", async (c) => {
+	try {
+		const data = await homeController.register(c);
+		return c.json(data, 201);
 	} catch (error) {
 		console.log(error);
 		return c.json(error, 400);
