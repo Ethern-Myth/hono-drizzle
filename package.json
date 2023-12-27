@@ -7,15 +7,11 @@
 	},
 	"dependencies": {
 		"@neondatabase/serverless": "^0.6.1",
-		"bcrypt": "^5.1.1",
 		"drizzle-orm": "^0.29.2",
-		"hono": "^3.10.1",
-		"jsonwebtoken": "^9.0.2"
+		"hono": "^3.10.1"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20230914.0",
-		"@types/bcrypt": "^5.0.2",
-		"@types/jsonwebtoken": "^9.0.5",
 		"dotenv": "^16.3.1",
 		"drizzle-kit": "^0.20.8",
 		"postgres": "^3.4.3",
